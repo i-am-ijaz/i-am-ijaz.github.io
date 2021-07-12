@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function updateQuote() {
         // Fetch a random quote from the Quotable API
-        const response = await fetch("https://api.quotable.io/random");
+        const response = await fetch("https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json");
         const data = await response.json();
         if (response.ok) {
             // Update DOM elements
-            quote.textContent = data.content;
-            cite.textContent = data.author;
+            quote.textContent = data.quoteText;
+            cite.textContent = data.quoteAuthor;
         } else {
             quote.textContent = "An error occured";
             console.log(data);
