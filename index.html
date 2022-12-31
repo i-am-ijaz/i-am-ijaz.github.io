@@ -16,14 +16,15 @@
             <h1 style="font-family: Montserrat; font-weight: bold;">Random Quote Generator</h1>
             <div class="container">
                 <blockquote class="blockquote mb-0 ">
-                    <p value="Hello World" id="sample">Abaraca Dabara</p>
-                    <footer id="sample" class="blockquote-footer">
-                        <cite title="Source Title"></cite>
+                    <p id="quote">Abaraca Dabara</p>
+                    <footer class="blockquote-footer">
+                        <cite id="author"></cite>
                     </footer>
                 </blockquote>
                 <div>
                     <button class="bubbly-button" style="margin-top: 2%; margin-right: 10px;">New Quote</button>
-                    <button class="bubbly-button" onclick="CopyToClipboard('sample');return false;">Copy Quote</button>
+                    <button class="bubbly-button" onclick="copyToClipboard('quote','author');return false;">Copy
+                        Quote</button>
                 </div>
             </div>
 
@@ -32,15 +33,12 @@
 
     <script src="app.js"></script>
     <script>
-        function CopyToClipboard(id) {
-            var r = document.createRange();
-            var showAlert = document.getElementById("sample");
-            r.selectNode(document.getElementById(id));
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(r);
+        function copyToClipboard(quote, author) {
+            var quoteEle = document.getElementById(quote).textContent;
+            var authorEle = document.getElementById(author).textContent;
+            navigator.clipboard.writeText(`${quoteEle} \n-${authorEle}`);
+            console.log(quoteEle)
             document.execCommand('copy');
-            window.getSelection().removeAllRanges();
-
         }
     </script>
 </body>
